@@ -1,16 +1,16 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+val shapes: MutableList<String> = mutableListOf("triangle", "square", "circle")
+val shapesLocked: List<String> = shapes
+
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
-//  test
-
-
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
-    }
+// Read only list
+    val readOnlyShapes = listOf("triangle", "square", "circle")
+    println("readOnlyShapes = ${readOnlyShapes}")
+// [triangle, square, circle]
+    println("shapesLocked = ${shapesLocked}")
+    println("The first item in the list is: ${shapesLocked.first()}")
+    println("The last item in the list is: ${shapesLocked.last()}")
+    println("The second item in the list is: ${shapesLocked[1]}")
+    println("The number of  item in the list is: ${shapesLocked.count()}")
+    shapes.add("1")
+    println("The number of  item in the shape is: ${shapes.count()}")
 }
