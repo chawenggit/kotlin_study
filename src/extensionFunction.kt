@@ -45,10 +45,12 @@ fun main() {
 
     //Exercise2
     fun String.toLowercaseString(): String = this.lowercase() // Write your code here
-    fun String.toUpercaseString(): String = this.uppercase() // Write your code here
+    fun String.toUppercaseString(): String = this.uppercase() // Write your code here
 
     println("Hello World!".toLowercaseString())
-    println("Hello World!".toUpercaseString())
+    println("Hello World!".toUppercaseString())
     // hello world!
+
+
 }
 //https://kotlinlang.org/docs/kotlin-tour-intermediate-extension-functions.html#extension-functions-exercise-2
