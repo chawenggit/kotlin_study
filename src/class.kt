@@ -62,4 +62,4 @@ fun main() {
     //*** Exercise 3
 }
 
-https://kotlinlang.org/docs/kotlin-tour-classes.html#exercise-3
+//https://kotlinlang.org/docs/kotlin-tour-classes.html#exercise-3
