@@ -1,5 +1,14 @@
 fun main() {
-//    The Receiver is readOnlyShape
+//    Extension functions let you add new functions to existing classes without modifying their source code
+//ref  https://claude.ai/chat/65665826-29be-4a40-9f37-e0c9e23075b1
+//    Basic Syntax
+//    fun ClassName.functionName(params): ReturnType {
+//        // 'this' refers to the instance of ClassName
+//    } // may without "{ } "
+
+//    THE RECEIVER
+//    is the OBJECT that the extension function is called on
+
     val readOnlyShapes = listOf("triangle", "square", "circle")
     println(readOnlyShapes.first())
 
