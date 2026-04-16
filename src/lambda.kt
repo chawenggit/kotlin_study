@@ -1,3 +1,4 @@
+//val lambdaName: (InputType) -> ReturnType = { parameter -> body }
 fun main() {
 //    lambda
     val upperCaseString = { text: String -> text.uppercase() }

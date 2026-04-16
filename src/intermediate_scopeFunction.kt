@@ -1,4 +1,16 @@
+// scope functions are a set of built-in functions or extension function that is used to execute a block of code in the context of an object
+/*
+    ex.
+    val result = run
+*/
 fun main() {
+    val x = run {
+        val x = 10
+        val y = 20
+        x * y // return to run
+    }
+    println(" x run = $x")
+
     //LET
     fun sendNotification(recipientAddress: String): String {
         println("Yo $recipientAddress!")
@@ -20,7 +32,7 @@ fun main() {
     // APPLY
     /*
         Key idea:
-        apply is just a convenience — it groups all setup code for an object in one block and removes repetitive prefixes.
+        APPLY returns its object and groups all setup code for an object in one block and removes repetitive prefixes.
         It is most useful when:
         Situation                                       Example
         Setting multiple properties                     token, timeout, retryCount
@@ -68,6 +80,11 @@ fun main() {
 
     println("result: $result")
     println("result1: ${result}")
+    val result2 = "Hello".run {
+        println(this) // "Hello"
+        length        // returned
+    } // result = 5
+    println("result2: ${result2}")
 
 //    ALSO
 //    ALSO is most useful for logging/debugging without interrupting the chain:
@@ -133,10 +150,10 @@ WITH         this               Lambda result   Call multiple functions on an ob
     //    Exercise2
     data class User(val id: Int, var email: String)
 
-        // Write your code here
+    // Write your code here
     fun updateEmail(user: User, newEmail: String): User = User(user.id, newEmail).apply {
         email = newEmail
-    }.also { println("Updating email for user with ID: ${it.id}")}
+    }.also { println("Updating email for user with ID: ${it.id}") }
 
     val user = User(1, "old_email@example.com")
     val updatedUser = updateEmail(user, "new_email@example.com")
