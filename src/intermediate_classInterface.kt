@@ -21,16 +21,20 @@ If you need to inherit from multiple sources, consider using interfaces.
 
 interface PaymentMethod {
     // Functions are inheritable by default
-    fun initiatePayment(amount: Double): String
+    fun initiatePayment(amount: Double): String {
+        return "Default Processing payment of $$amount..."  // default logic
+    }
 }
 
 interface PaymentType {
     val paymentType: String
 }
-class CreditCardPayment(val cardNumber: String, val cardHolderName: String, val expiryDate: String) : PaymentMethod, PaymentType {
+
+class CreditCardPayment(val cardNumber: String, val cardHolderName: String, val expiryDate: String) : PaymentMethod,
+    PaymentType {
     override fun initiatePayment(amount: Double): String {
         // Simulate processing payment with credit card
-        return "Payment of $$amount initiated using Credit Card ending in ${cardNumber.takeLast(4)}."
+        return "Own Payment of $$amount initiated using Credit Card ending in ${cardNumber.takeLast(4)}."
     }
 
     override val paymentType = "CreditCardPayment"
@@ -45,6 +49,7 @@ interface DrawingTool {
     fun erase(area: String)
     fun getToolInfo(): String
 }
+
 // Without DELEGATION
 class PenTool : DrawingTool {
     override val color: String = "black"
@@ -83,6 +88,7 @@ class CanvasSessionDelegation(val tool: DrawingTool) : DrawingTool by tool {
     // No boilerplate code!
     override val color: String = "blue"
 }
+
 fun main() {
     // Creates an instance of the Electronic class
     val laptop = Electronic(name = "Laptop", price = 1000.0, warranty = 2)
