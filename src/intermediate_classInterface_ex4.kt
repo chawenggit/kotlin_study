@@ -1,0 +1,35 @@
+interface Messenger {
+    fun sendMessage(message: String)
+    fun receiveMessage(): String
+}
+
+class BasicMessenger : Messenger {
+    override fun sendMessage(message: String) {
+        println("Sending message: $message")
+    }
+
+    override fun receiveMessage(): String {
+        return "You've got a new message!"
+    }
+}
+
+class SmartMessenger(val msg: BasicMessenger) : Messenger by msg {
+// Write your code here
+    override fun sendMessage(message: String) {
+        println("Sending a smart message: $message")
+        msg.sendMessage("[smart] $message")
+    }
+}
+
+fun main() {
+    val basicMessenger = BasicMessenger()
+    val smartMessenger = SmartMessenger(basicMessenger)
+
+    basicMessenger.sendMessage("Hello!")
+    // Sending message: Hello!
+    println(smartMessenger.receiveMessage())
+    // You've got a new message!
+    smartMessenger.sendMessage("Hello from SmartMessenger!")
+    // Sending a smart message: Hello from SmartMessenger!
+    // Sending message: [smart] Hello from SmartMessenger!
+}
