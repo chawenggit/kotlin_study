@@ -109,4 +109,4 @@ fun main() {
     canvas
 }
 
-//https://kotlinlang.org/docs/kotlin-tour-intermediate-classes-interfaces.html#abstract-classes
+//https://kotlinlang.org/docs/kotlin-tour-intermediate-classes-interfaces.html#abstract-classesnext page
