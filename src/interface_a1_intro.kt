@@ -32,6 +32,7 @@ class Farmer(val name: String) {
 
 /*
     Problem1 : multiple overriding greet fun
+    Solution : using interface
  */
 
 fun main() {
