@@ -1,4 +1,4 @@
-package class_delegation_a3_delegate_come
+package class_delegation_a3_multiple_delegates
 
 /*
     Chef and Waiter have the same fun prepareEntree so next interfaces come in
@@ -12,6 +12,21 @@ interface KitchenService {
     fun prepareEntree(name: String): Entree?
 }
 
+interface BarService {
+    fun prepareBeverage(name: String): Beverage?
+}
+
+class Bartender: BarService {
+    override fun prepareBeverage(name: String): Beverage? = when (name) {
+        "Water"-> Beverage.WATER
+        "Soda"-> Beverage.SODA
+        "Peach Tea"-> Beverage.PEACH_ICED_TEA
+        "Tea-Lemonade" -> Beverage.TEA_LEMONADE
+        else
+            -> null
+    }
+}
+
 class Chef : KitchenService {
     override fun prepareEntree(name: String): Entree? = when (name) {
         "Tossed Salad"
@@ -23,22 +38,20 @@ class Chef : KitchenService {
     }
 }
 
-class Waiter(private val chef: Chef) : KitchenService by chef {
-    // The waiter can prepare a beverage by himself...
-    fun prepareBeverage(name: String): Beverage? = when (name) {
-        "Water" -> Beverage.WATER
-        "Soda" -> Beverage.SODA
-        else -> null
-    }
+class Waiter(
+    private val chef: Chef,
+    private val bartender: Bartender
+) : KitchenService by chef ,BarService by bartender {
     fun acceptPayment(money: Int) = println("Thank you for paying for your meal")
+//    override fun prepareBeverage(name: String) = bartender.prepareBeverage(name)  // can be commented
 }
 
+enum class Beverage { WATER, SODA, PEACH_ICED_TEA, TEA_LEMONADE }
 enum class Entree { TOSSED_SALAD, SALMON_ON_RICE }
-enum class Beverage { WATER, SODA }
 
 
 fun main() {
-    val waiter = Waiter(Chef())
+    val waiter = Waiter(Chef(), Bartender())
     val beverage = waiter.prepareBeverage("Soda")
     val entree = waiter.prepareEntree("Salmon on Rice")
     println(beverage)
