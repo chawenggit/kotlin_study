@@ -1,5 +1,6 @@
 package class_delegation_a1_intro
 /*
+    book Kotlin illustrated Guide
     Chef and Waiter have the same fun prepareEntree so next interfaces come in
  */
 class Chef {
