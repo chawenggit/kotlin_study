@@ -8,7 +8,7 @@ interface KitchenService {
     fun prepareEntree(name: String): Entree?
 }
 
-class Chef :KichenService {
+class Chef :KitchenService {
     override fun prepareEntree(name: String): Entree? = when (name) {
         "Tossed Salad"
             -> Entree.TOSSED_SALAD
@@ -18,7 +18,7 @@ class Chef :KichenService {
     }
 }
 
-class Waiter(private val chef: Chef) :KichenService {
+class Waiter(private val chef: Chef) :KitchenService {
     // The waiter can prepare a beverage by himself...
     fun prepareBeverage(name: String): Beverage? = when (name) {
         "Water" -> Beverage.WATER
