@@ -1,3 +1,5 @@
+package interface_a1_intro
+
 class Chicken(val name: String, var numberOfEggs: Int = 0)  {
     fun speak() = println("Cluck!")
 }

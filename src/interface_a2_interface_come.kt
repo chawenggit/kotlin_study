@@ -1,3 +1,5 @@
+package interface_a2_interface_come
+
 interface FarmAnimal { // can not instantiate
     val name: String
     fun speak()
