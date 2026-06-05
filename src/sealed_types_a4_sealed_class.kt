@@ -1,4 +1,4 @@
-package sealed_types_a3_sealed_class
+package sealed_types_a4_sealed_class
 
 /*
     book Kotlin illustrated Guide
