@@ -1,4 +1,7 @@
 package generics_a1_intro
+/*
+    book Kotlin illustrated Guide
+ */
 // FIRST DAY
 enum class Coffee { LIGHT_ROAST, MEDIUM_ROAST, DARK_ROAST }
 class Mug(val beverage: Coffee)
