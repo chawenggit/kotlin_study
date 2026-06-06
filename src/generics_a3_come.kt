@@ -1,6 +1,5 @@
 package generics_a3_come
 
-import generics_a2_use_interface_help.Beverage
 
 /*
     book Kotlin illustrated Guide
