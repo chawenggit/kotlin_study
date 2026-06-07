@@ -19,24 +19,45 @@ interface Beverage
 enum class Tea : Beverage { GREEN_TEA, BLACK_TEA, RED_TEA }
 enum class Coffee : Beverage { LIGHT_ROAST, MEDIUM_ROAST, DARK_ROAST }
 
+// Generic Types Syntax
+// T = Type Argument
 class Mug<T>(val beverage: T) // generic type
 
-val mug_c = Mug(Coffee.LIGHT_ROAST) // parameterized type
+// type explicit
+val mug_c: Mug<Coffee> = Mug(Coffee.LIGHT_ROAST) // parameterized type
+val mug_c1 = Mug<Coffee>(Coffee.LIGHT_ROAST) // parameterized type
+
+// type inference without < type >
+val mug_c2 = Mug(Coffee.LIGHT_ROAST) // parameterized type
+
 val mug_t = Mug(Tea.GREEN_TEA) // parameterized type.
-//fun drink(coffee: Coffee) = println("Drinking coffee: $coffee")
-////drink(mugOfCoffee.beverage)  // *** error because the compiler only know declared type
-//
-//interface Beverage
-//enum class Tea : Beverage { GREEN_TEA, BLACK_TEA, RED_TEA }
-//enum class Coffee : Beverage { LIGHT_ROAST, MEDIUM_ROAST, DARK_ROAST }
-//class Mug(val beverage: Beverage)
-//
-//fun drink(coffee: Coffee) = println("Drinking coffee: $coffee")
-//fun drink(tea: Tea) = println("Drinking tea: $tea")
-////drink(mugOfCoffee.beverage)  // *** error because the compiler only know declared type
-//drink(mugOfTea.beverage) //error
+
+// without generic FUN
+fun drink(coffee: Coffee) = println("Drinking coffee: $coffee")
+fun drink(tea: Tea) = println("Drinking tea: $tea")
+
+// with gerneric FUN
+fun <T> drink_g(berverage: T) {
+    println("--->Generic Drinking : $berverage")
+    if (berverage is Tea) {
+        println("   if >>Generic Drinking tea: $berverage")
+    }
+    when (berverage) {
+        is Tea -> println("    when >>Generic Drinking tea: $berverage")
+        is Coffee -> println("     when >>Generic Drinking coffe: $berverage")
+    }
+}
+
 
 fun main() {
+    drink(Tea.GREEN_TEA)
+    drink(mug_c2.beverage)
+    drink(mug_t.beverage)
+    drink_g(mug_t.beverage)
+    drink_g(mug_c1.beverage)
+
     println(mug_c)
+    println(mug_c1)
+    println(mug_c2)
     println(mug_t)
 }
