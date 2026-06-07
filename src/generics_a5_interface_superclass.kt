@@ -36,7 +36,7 @@ val bowlOfSoup2 = Bowl(Soup.CARROT)
 //  superclass and open class can be generic
 // ✗ Case 1 — val in parent is final, child tries to override
 open class Dish_C1<T>(val food: T)
-class BowlOfSoup_C1(override val food: Soup) : Dish_C1<Soup>(food)
+//class BowlOfSoup_C1(override val food: Soup) : Dish_C1<Soup>(food)
 //***! ERROR: food is final and cannot be overridden
 
 // ✓ Case 2 — parent opens it, child overrides
