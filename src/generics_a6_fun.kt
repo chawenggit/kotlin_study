@@ -1,9 +1,5 @@
 package generics_a6_fun
 
-import generics_a3_come.Coffee
-import generics_a3_come.Tea
-import jdk.internal.org.jline.utils.Colors.s
-
 /*
     book Kotlin illustrated Guide
 */
@@ -25,9 +21,16 @@ enum class Coffee : Beverage { LIGHT_ROAST, MEDIUM_ROAST, DARK_ROAST }
 class Mug<T>(val beverage: T) // generic type
 
 fun <T : Beverage> serve(beverage: T): Mug<T> = Mug(beverage)
-
 val mug1 = serve(Coffee.DARK_ROAST)
-//error this
-fun main() {
 
+//**  Create Extension Fun
+fun <T : Beverage> T.pourIntoMug() = Mug(this)
+val mug_ext = Coffee.MEDIUM_ROAST.pourIntoMug()
+
+fun main() {
+    println(mug1)
+    println(mug1.beverage)
+
+    println(mug_ext)
+    println(mug_ext.beverage)
 }
