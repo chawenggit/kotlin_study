@@ -9,13 +9,18 @@ import kotlin.math.PI
 
     Syntax
         fun funName(para1: Type): Return Type = or {}
-    Bodies of FUN
-        Expression
+    FUNCTION Bodies
+        Expression body : for simple expression
             fun circumference(radius: Double) = 2 * pi * radius
-        Block
+        Block body
             fun hello() { return println("Hello, world! 123456") }
-
-
+    Default Arguments
+        fun printMessageWithPrefix1(message: String, prefix: String = "Info") {}
+    Named Argument calling
+        printMessageWithPrefix(prefix = "Log", message = "Hello")
+    Entry Point main()
+    String Template  : with ${expression}
+          println("The circumference is ${circumference(1.0)}")
 */
 
 fun hello_woReturn() {
@@ -26,10 +31,7 @@ fun printMessageWithPrefix(message: String, prefix: String) {
     println("[$prefix] $message")
 }
 
-// default parameter
-fun printMessageWithPrefix1(message: String, prefix: String = "Info") {
-    println("[$prefix] $message")
-}
+
 
 fun sum(x: Int, y: Int): Int {
     return x + y
@@ -45,9 +47,9 @@ fun intervalInSeconds(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) = ((ho
 
 fun main() {
 
-    hello()
+//    hello()
     printMessageWithPrefix("Log", "Hello")
-    printMessageWithPrefix(prefix = "Log", message = "Hello")
+
     printMessageWithPrefix1("Lox")
     println(sum(1, 2))
     println(circleArea(1))
