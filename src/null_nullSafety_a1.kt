@@ -1,6 +1,4 @@
 package null_nullSafety_a1
-
-
 /*  REFs
     1 https://kotlinlang.org/docs/kotlin-tour-null-safety.html#exercise
     2 book Kotlin illustrated Guide
