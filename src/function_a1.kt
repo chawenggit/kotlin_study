@@ -1,8 +1,22 @@
+package function_a1
 import kotlin.math.PI
+/*
+    book Kotlin illustrated Guide
+    fun circumference(radius: Double) = 2 * pi * radius
+    From Function
+    1. An argument is a value that we pass function, the argument is 5.2.
+    2. A parameter is a variable that hold an argument named radius.
 
-fun hello() {
-    return println("Hello, world! 123456")
-}
+    Syntax
+        fun funName(para1: Type): Return Type = or {}
+    Bodies of FUN
+        Expression
+            fun circumference(radius: Double) = 2 * pi * radius
+        Block
+            fun hello() { return println("Hello, world! 123456") }
+
+
+*/
 
 fun hello_woReturn() {
     println("Hello, world! 123456")
