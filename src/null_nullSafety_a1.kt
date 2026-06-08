@@ -1,3 +1,18 @@
+package null_nullSafety_a1
+
+
+/*  REFs
+    1 https://kotlinlang.org/docs/kotlin-tour-null-safety.html#exercise
+    2 book Kotlin illustrated Guide
+    NULL = Type? == nullable type
+    Elvis operator ?:
+    not-null assertion operator !!    // dangerous should not use
+    Safe-Call Operator .?
+ */
+
+class Payment
+enum class Coffee { LIGHT_ROAST, MEDIUM_ROAST, DARK_ROAST }
+
 fun main() {
     // neverNull has String type
     var neverNull: String? = "This can't be null"
@@ -55,10 +70,10 @@ fun main() {
     data class Employee(val name: String, var salary: Int)
 
     fun employeeById(id: Int) = when (id) {
-        1 -> Employee("Mary", 20)
-        2 -> null
-        3 -> Employee("John", 21)
-        4 -> Employee("Ann", 23)
+        1    -> Employee("Mary", 20)
+        2    -> null
+        3    -> Employee("John", 21)
+        4    -> Employee("Ann", 23)
         else -> null
     }
 
@@ -68,5 +83,22 @@ fun main() {
     }
     println((1..5).sumOf { id -> salaryById(id) })
     println((1..5).map { id -> employeeById(id)?.name })
+
+    fun orderCoffee(payment: Int?): Coffee {
+        return Coffee.MEDIUM_ROAST
+    }
+
+    val payment: Int? = 1//null
+//    val coffee = orderCoffee(payment!!) // ERROR AT RUNTIME!
+//    println(coffee)
+
+    println("----- Safe-call operator -----")
+    val supportType = if (payment == null) "NULL" else payment::class.simpleName;
+    println("Thank you for supporting us with your $supportType")
+    // ✅ After — safe-call + Elvis
+    val supportType1 = payment?.let { it::class.simpleName } ?: "NULL"
+    println("Thank you for supporting us with your $supportType1")
+    val supportType2: Int? = null //payment?.lowercase()//  { it::class.simpleName } ?: "NULL"
+    println("Thank you for supporting us with your ${supportType2?.toString() ?: "NULL"}")
+
 }
-//https://kotlinlang.org/docs/kotlin-tour-null-safety.html#exercise
