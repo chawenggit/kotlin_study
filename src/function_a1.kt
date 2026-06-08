@@ -50,7 +50,7 @@ fun main() {
 //    hello()
     printMessageWithPrefix("Log", "Hello")
 
-    printMessageWithPrefix1("Lox")
+//    printMessageWithPrefix1("Lox")
     println(sum(1, 2))
     println(circleArea(1))
     println(circleArea_single_exp(2))
