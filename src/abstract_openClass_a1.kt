@@ -98,7 +98,7 @@ class Clunker01(acceleration: Double) : Car01(acceleration) {
 //----------Open Class ---------
 open class Car10(private val acceleration: Double) {
     private var speed = 0.0
-    protected open fun makeEngineSound() = println("Vrrrrrr...")
+    protected open fun makeEngineSound() = println("Vrrrrrr...")  // must be open and protected
     fun accelerate() {
         speed += 1.0
         makeEngineSound()
@@ -112,6 +112,23 @@ class Clunker10(acceleration: Double) : Car10(acceleration) {
 
 val car10 = Car10(0.7)  // can extend
 val clunker10 = Clunker10(0.7)
+
+// ----------- Getter and Setter Visibility Modifiers ---------
+open class Car20(private val acceleration: Double) {
+    private var speed = 0.0
+    protected open fun makeEngineSound() = println("Vrrrrrr...")  // must be open and protected
+    fun accelerate() {
+        speed += 1.0
+        makeEngineSound()
+    }
+}
+
+
+class MuscleCar : Car10(5.0) {
+    override fun makeEngineSound() = when{
+        println("putt-putt-putt")
+    }
+}
 
 fun main() {
     val myCar = Clunker1(0.7)
