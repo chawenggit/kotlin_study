@@ -29,8 +29,26 @@ fun annc(number: Int, task: String): String {
 //val first = annc(1, "clean my room")
 //    println(first)
 
+//  ----------Call Stacks, Exceptions, and Error Messages--------------------
+/*     val first = annc(9, "clean my room") // "The first thing I will do is clean my room."
+     Error
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 9 out of bounds for length 6
+	at java.base/java.util.Arrays$ArrayList.get(Arrays.java:4225)
+	at handling_runtime_exceptions_a1.Handling_runtime_exceptions_a1Kt.ordinal(handling_runtime_exceptions_a1.kt:19)
+	at handling_runtime_exceptions_a1.Handling_runtime_exceptions_a1Kt.annc(handling_runtime_exceptions_a1.kt:26)
+	at handling_runtime_exceptions_a1.Handling_runtime_exceptions_a1Kt.main(handling_runtime_exceptions_a1.kt:46)
+	at handling_runtime_exceptions_a1.Handling_runtime_exceptions_a1Kt.main(handling_runtime_exceptions_a1.kt)
+
+	Exception = Index 9 out of bounds for length 6
+	Call Stack = from Bottom Up
+	each error line shows : Function -> FileName -> Line Number
+	click to jump to error place
+*/
+
+//  ----------Call Stacks, Exceptions, and Error Messages--------------------
+
 
 fun main() {
-    val first = annc(1, "clean my room") // "The first thing I will do is clean my room."
+    val first = annc(9, "clean my room") // "The first thing I will do is clean my room."
     println(first)
 }
