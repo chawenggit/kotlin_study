@@ -44,11 +44,23 @@ Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 9 out
 	each error line shows : Function -> FileName -> Line Number
 	click to jump to error place
 */
-
-//  ----------Call Stacks, Exceptions, and Error Messages--------------------
-
-
-fun main() {
+fun showError() {
     val first = annc(9, "clean my room") // "The first thing I will do is clean my room."
     println(first)
+}
+
+//  ----------Catching Exceptions--------------------
+fun catch() {
+    val tasks = listOf(1 to "clean my room", 9 to "take out trash", 5 to "feed the dog")
+    tasks.forEach { (number, task) ->
+        try {
+            println(annc(number, task))
+        } catch (exception: Exception) {
+            println("CATCH  n=$number TASK=$task EXCEPT= $exception")
+        }
+    }
+}
+
+fun main() {
+    catch()
 }
