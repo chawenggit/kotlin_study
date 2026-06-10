@@ -56,11 +56,28 @@ fun catch() {
         try {
             println(annc(number, task))
         } catch (exception: Exception) {
-            println("CATCH  n=$number TASK=$task EXCEPT= $exception")
+            println("CATCH  n=$number TASK=$task EXCEPT= $exception MSG=${exception.message}")
         }
     }
 }
 
+//  ----------looping over the Stack Trace--------------------
+fun catch_loop() {
+    val tasks = listOf(1 to "clean my room", 9 to "take out trash", 5 to "feed the dog")
+    tasks.forEach { (number, task) ->
+        try {
+            println(annc(number, task))
+        } catch (e: Exception) {
+            e.stackTrace             // array of frames, crash at top
+                .reversed()          // flip → main() at top, crash at bottom
+                .drop(1)             // remove last JVM internal frame
+                .joinToString(" -> ") { "${it.methodName}()" }
+                // extract method names, join with arrow
+                .let { println("Error: $it") }
+            // print the result
+        }
+    }
+}
 fun main() {
-    catch()
+    catch_loop()
 }
