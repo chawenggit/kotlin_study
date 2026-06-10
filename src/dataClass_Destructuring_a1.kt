@@ -44,9 +44,23 @@ fun showDataClass() {
     println("toString = $bill1")
 }
 
+//----------Copying Data Classes--------------------
+data class Book(val title: String, var price: Int)
+
+val book = Book("The Malt Shop Caper", 18)
+fun copyDataClass() {
+    println("book18 = ${book}")
+    book.price = 20  // var
+    println("book20 = ${book}")
+    // The price just went up!
+    val newBook_copyOldWay = Book(book.title, 20)    // new obj with same name
+    val newBook_copy = book.copy(price = 20)    // ***** new obj with same name *****
+    println("newBook = ${newBook_copyOldWay}")
+    println("newBook = ${newBook_copy}")
+}
+
 fun main() {
-    println("------before use dataclass-----------")
-    showDataClass_reg()
-    println("------after use dataclass-----------")
-    showDataClass()
+//    showDataClass_reg()
+//    showDataClass()
+    copyDataClass()
 }
