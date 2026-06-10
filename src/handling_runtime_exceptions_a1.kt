@@ -84,13 +84,25 @@ fun catch_loop() {
 //  ----------Throwing Exceptions--------------------
 fun throwException() {
     val exception = Exception("No cleaning allowed on holidays!")
-    throw(exception)
+    throw (exception)
 }
+
 fun annc_throw(number: Int, task: String): String {
     if (task.contains("clean")) throw Exception("No cleaning allowed on holidays!")
     val ordinal = ordinal(number)
     return "The $ordinal thing I will do is $task."
 }
 //annc_throw(9,"clean my room")
+
+//  ----------Exception Types--------------------
+class HolidayException(val task: String) : Exception("'$task' is not allowed on holidays")
+fun annc_type(number: Int, task: String): String {
+    if (task.contains("clean")) throw HolidayException("task")
+    val ordinal = ordinal(number)
+    return "The $ordinal thing I will do is $task."
+}
+//annc_type(9,"clean my room")
+
 fun main() {
+//    not finish yet
 }
