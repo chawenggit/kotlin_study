@@ -23,11 +23,11 @@ package abstract_openClass_a1
     4 Protected Visibility
         public     →  no walls    — everyone enters
         internal   →  module wall — only teammates enter
-        protected  →  family wall — only class + children  enter
+        protected  →  family wall — only class + children enter
         private    →  personal    — only I enter
     5  Abstract Class with functions and properties can be:
         - abstract : has only interface without implement
-        - open : has implement and can be overridden
+        - open : has IMPLEMENT and can be OVERRIDDEN
         - final : has implement and can not be overridden (default in Kotlin)
     6 Open Class can be both extended and instantiated
 
@@ -114,19 +114,27 @@ val car10 = Car10(0.7)  // can extend
 val clunker10 = Clunker10(0.7)
 
 // ----------- Getter and Setter Visibility Modifiers ---------
+    //     Car20                                 subclass can
+    // protected var speed = 0.0                == get + set
+    // protected var speed = 0.0; private set   == get only
+
 open class Car20(private val acceleration: Double) {
-    private var speed = 0.0
+    protected var speed = 0.0;    //get + set
+//    protected var speed = 0.0; private set // only get
     protected open fun makeEngineSound() = println("Vrrrrrr...")  // must be open and protected
     fun accelerate() {
-        speed += 1.0
+        speed += 9.0
         makeEngineSound()
     }
 }
 
-
-class MuscleCar : Car10(5.0) {
-    override fun makeEngineSound() = when{
-        println("putt-putt-putt")
+class MuscleCar : Car20(5.0) {
+    override fun makeEngineSound() = when {
+        speed < 10.0 -> {
+            speed++; println("$speed : Vrooooom ")
+        }
+        speed < 20.0 -> println("$speed : Vrooooooooom")
+        else         -> println("$speed : Vrooooooooooooooooooom!")
     }
 }
 
@@ -134,7 +142,11 @@ fun main() {
     val myCar = Clunker1(0.7)
     println(myCar.speed)
     println(myCar.acceleration)
-//    myCar.accelerate()
+    val myNewCar = MuscleCar()
+    myNewCar.accelerate()
+    myNewCar.accelerate()
+    myNewCar.accelerate()
+//    println(myNewCar.speed)
 //    println(myCar.speed)
 
 
