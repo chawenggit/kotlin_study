@@ -5,6 +5,7 @@ import dataClass_Destructuring_a1.Book1
 /*
     book Kotlin illustrated Guide
     1. Exception: something unexpected happened
+        it is the object
 
  */
 
@@ -62,6 +63,7 @@ fun catch() {
 }
 
 //  ----------looping over the Stack Trace--------------------
+// it is the object
 fun catch_loop() {
     val tasks = listOf(1 to "clean my room", 9 to "take out trash", 5 to "feed the dog")
     tasks.forEach { (number, task) ->
@@ -78,6 +80,17 @@ fun catch_loop() {
         }
     }
 }
+
+//  ----------Throwing Exceptions--------------------
+fun throwException() {
+    val exception = Exception("No cleaning allowed on holidays!")
+    throw(exception)
+}
+fun annc_throw(number: Int, task: String): String {
+    if (task.contains("clean")) throw Exception("No cleaning allowed on holidays!")
+    val ordinal = ordinal(number)
+    return "The $ordinal thing I will do is $task."
+}
+//annc_throw(9,"clean my room")
 fun main() {
-    catch_loop()
 }
