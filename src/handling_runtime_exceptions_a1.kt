@@ -21,6 +21,16 @@ fun showRuntimeExceptions() {
     val place = ordinal(9) //9 = out of size  ! ***** runtime error
 }
 
+//  ----------The Call Stack---------------------
+fun annc(number: Int, task: String): String {
+    val ordinal = ordinal(number)
+    return "The $ordinal thing I will do is $task."
+}
+//val first = annc(1, "clean my room")
+//    println(first)
+
+
 fun main() {
-    showRuntimeExceptions()
+    val first = annc(1, "clean my room") // "The first thing I will do is clean my room."
+    println(first)
 }
