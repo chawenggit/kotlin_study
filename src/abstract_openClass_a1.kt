@@ -136,18 +136,58 @@ class MuscleCar : Car20(5.0) {
         speed < 20.0 -> println("$speed : Vrooooooooom")
         else         -> println("$speed : Vrooooooooooooooooooom!")
     }
+    fun name() {
+        println("Muscle Car")
+    }
 }
 
+
+// ----------- Combining Interfaces and Abstract/Open Classes ---------
+interface Named {
+    val name: String
+}
+class NamedCar(override val name: String) : Car20(3.0), Named
+/*
+Characteristic                          Interface   Abstract Class      Open Class
+Can inherit from it?                    Yes         Yes                 Yes
+Can inherit from multiple?              Yes         No                  No
+Can be instantiated directly?           No          No                  Yes
+Can include non-implemented members?    Yes         Yes                 No
+Can include default implementation?     Yes         Yes                 Yes
+*/
+
+// ----------- Subclasses and Substitution ---------
+//
+val myCar30: Car30 = MuscleCar30()
+//  *** reference type (compile time) == Car30 (superClass)
+//  *** actual object (run time)  == subclass
+
+open class Car30(private val acceleration: Double) {
+    var speed = 0.0;    //get + set
+    //    var speed = 0.0; private set // only get
+    open fun makeEngineSound() = println("Vrrrrrr...")  // must be open and protected
+    fun accelerate() {
+        speed += 9.0
+        makeEngineSound()
+    }
+    open fun name() = println("Car30")
+}
+
+class MuscleCar30 : Car30(5.0) {
+    override fun makeEngineSound() = when {
+        speed < 10.0 -> {
+            speed++; println("$speed : Vrooooom ")
+        }
+        speed < 20.0 -> println("$speed : Vrooooooooom")
+        else         -> println("$speed : Vrooooooooooooooooooom!")
+    }
+    override fun name() = println("Muscle Car 30")
+}
+//--------------------------------------------
 fun main() {
-    val myCar = Clunker1(0.7)
-    println(myCar.speed)
-    println(myCar.acceleration)
-    val myNewCar = MuscleCar()
-    myNewCar.accelerate()
-    myNewCar.accelerate()
-    myNewCar.accelerate()
-//    println(myNewCar.speed)
-//    println(myCar.speed)
+    println(myCar30.speed)
+    myCar30.makeEngineSound()
+    myCar30.name()   // Muscle Car 30
 
 
 }
