@@ -59,6 +59,36 @@ fun copyDataClass() {
     println("newBook = ${newBook_copy}")
 }
 
+//----------Destructuring--------------------
+data class Book1(
+    val title: String,
+    val price: Int,
+    val author: String,
+    val width: Int,
+    val height: Int,
+    val isbn: String,
+)
+
+fun showDestructuring() {
+
+    fun destructuring_oldway(book: Book1) {
+        val title = book.title
+        val cost = book.price
+        val author = book.author
+        val widthInInches = book.width
+        val heightInInches = book.height
+        val isbn = book.isbn
+    }
+
+    fun destructuring(book: Book1) {
+        val (title, cost) = book
+    }
+
+    fun destructuring_lessRisk_byType(book: Book1) {
+        val (title: String, cost: Int) = book
+    }
+}
+
 fun main() {
 //    showDataClass_reg()
 //    showDataClass()
