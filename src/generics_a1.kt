@@ -1,6 +1,5 @@
 package generics_a1
 
-
 /*
     book Kotlin illustrated Guide
  */
@@ -75,9 +74,70 @@ fun main_test2() {
     names.processEach { println("Name: $it") }
     val bools = listOf(true, false, true)
     bools.processEach { println("${it.javaClass.simpleName} = $it") }
-
 }
 
+// Instead of creating multiple classes:
+
+class StringBox(val value: String)
+class IntBox(val value: Int)
+class PersonBox(val value: Person)
+
+// Create a single generic class:
+class Box<T>(val value: T) {
+    fun getValue(): T = value
+}
+
+// Use generic classes:
+val stringBox = Box("Hello")
+val numberBox = Box(100)
+val personBox = Box(Person("Jose Lujan"))
+
+/*
+// Generic function to process lists
+fun <T> List<T>.processEach(action: (T) -> Unit) {
+    forEach { item -> action(item) }
+}
+
+// Use with different types:
+val numbers = listOf(33, 3, 38)
+numbers.processEach { println("Number: $it") }
+val names = listOf("Noemi", "Viena", "Jose")
+names.processEach { println("Name: $it") } */
+
+/*
+---- When to use generics?
+     1.It is flexible and able to work with different data types in a safe and specific way
+---- When not to use generics?
+*** 1 know in advance that use only a specific type
+*** 2 use simple action like printing (use Any)
+// BAD (overcomplicated):
+class UserRepository<T : User> {
+fun save(item: T)
+fun find(id: Int): T
+}
+
+// BETTER (simpler and clearer):
+class UserRepository {
+fun save(user: User)
+fun find(id: Int): User
+}
+
+// If you only need to print items:
+// BAD (unnecessarily generic):
+fun <T> printItem(item: T) {
+    println(item.toString())
+}
+
+// BETTER (simpler):
+fun printItem(item: Any) {
+    println(item.toString())
+}
+    When to use Any instead of generics
+    1. It is common to all type (ex.toString())
+    2. not need type flexibility
+    3. simplify code
+
+ */
 fun main() {
     main_test2()
 }
