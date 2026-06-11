@@ -45,21 +45,39 @@ fun drinkDay3() {
 
 // ------------------book Kotlin in Action------------
 val authors = listOf("Sveta", "Seb", "Dima", "Roman")
-val readers = mutableListOf("Sveta", "Seb", "Dima" , "Hidi")
+val readers = mutableListOf("Sveta", "Seb", "Dima", "Hidi")
 fun main_test1() {
 //fun <T> List<T>.slice(indices: IntRange): List<T>
     val nums = listOf(1, 2, 3, 4, 5)
     println(nums.slice(1..3))  // ✅ just use it — [2, 3, 4]
-    val letters = ('a'..'z').toList()
+    val letters: List<Char> = ('a'..'z').toList()
     println(letters.slice(0..2)) // [a, b, c]
     println(letters.slice(10..13)) // [k, l, m, n]
     println(readers.filter { it !in authors })
     println(readers.filter { it in authors })
     println(listOf(1, 2, 3, 4).penultimate)
 }
+
 //  generic extension property (penultimate)
 val <T> List<T>.penultimate: T
     get() = this[size - 2]
+
+fun main_test2() {
+    // Generic function to process lists
+    fun <T> List<T>.processEach(action: (T) -> Unit) {
+        forEach { item -> action(item) }
+    }
+// ------------------book Kotlin for Java Developer ------------
+// Use with different types:
+    val numbers = listOf(33, 3, 38)
+    numbers.processEach { println("Number: $it") }
+    val names = listOf("Noemi", "Viena", "Jose")
+    names.processEach { println("Name: $it") }
+    val bools = listOf(true, false, true)
+    bools.processEach { println("${it.javaClass.simpleName} = $it") }
+
+}
+
 fun main() {
-    main_test1()
+    main_test2()
 }
