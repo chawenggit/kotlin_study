@@ -1,5 +1,6 @@
 package generics_a1
 
+
 /*
     book Kotlin illustrated Guide
  */
@@ -80,17 +81,27 @@ fun main_test2() {
 
 class StringBox(val value: String)
 class IntBox(val value: Int)
-class PersonBox(val value: Person)
+//class PersonBox(val value: Person)
 
 // Create a single generic class:
-class Box<T>(val value: T) {
-    fun getValue(): T = value
+class Box2<T>(val value: T) {
+//    fun getValue(): T = value
 }
 
 // Use generic classes:
-val stringBox = Box("Hello")
-val numberBox = Box(100)
-val personBox = Box(Person("Jose Lujan"))
+val stringBox2 = Box2("Hello")
+val numberBox2 = Box2(100)
+//val personBox2 = Box2(Person("Jose Lujan"))
+
+// SynTax
+class Container<T>(var content: T)
+
+fun main_test3() {
+    val myAContainer = Container("jose")
+    val myBContainer = Container(9999)
+    println(myAContainer.content)
+    println(myBContainer.content)
+}
 
 /*
 // Generic function to process lists
@@ -138,6 +149,88 @@ fun printItem(item: Any) {
     3. simplify code
 
  */
+
+//------- case of using generic over Any type ----------------------------
+// Generic cart that only accepts types that implement PricedItem
+interface PricedItem {
+    fun get_Price(): Double // can not name getPrice since is the same getter of price
+}
+
+class Product(
+    val name: String,
+    val price: Double
+) : PricedItem {
+    override fun get_Price() = price
+}
+
+class DiscountedProduct(
+    val name: String,
+    val price: Double,
+    val discount: Double
+) : PricedItem {
+    override fun get_Price() = price * (1 - discount)
+}
+
+class ShoppingCart_useAny {
+
+    private val items = mutableListOf<Any>()
+
+    fun addItem(item: Any) {
+        items.add(item)
+    }
+
+    fun calculateTotal(): Double {
+        var total = 0.0
+        items.forEach { item ->
+
+// We need to check the type of each item
+            when (item) {
+                is Product           -> total += item.price
+                is DiscountedProduct -> total += item.price * (1 - item.discount)
+                else                 -> println("Unrecognized product type")
+            }
+        }
+        return total
+    }
+}
+
+// Generic cart that only accepts types that implement PricedItem
+class ShoppingCart<T : PricedItem> {
+    private val items = mutableListOf<T>()
+
+    fun addItem(item: T) {
+        items.add(item)
+    }
+
+    fun calculateTotal(): Double {
+        return items.sumOf { it.get_Price() }
+    }
+}
+
+fun main_AnyVsGenerics() {
+    val cart = ShoppingCart<PricedItem>()
+    cart.addItem(Product("Laptop", 999.99))
+    cart.addItem(DiscountedProduct("Phone", 599.99, 0.1))
+//    cart.addItem("This shouldn't be here")//Error we can not add any type
+    println(cart.calculateTotal()) // 1539.981
+}
+/* the avantages for this case of using Gererics over Any
+    1.Type Safety: constrained type (<T : PricedItem>) without type checking
+    2.Reuse and flexible
+    3.Clean and safe code
+ */
+
+//------- Using generics with functions ----------------------------
+fun <T> printItem(item: T) {
+    println(item)
+}
+
+fun main_fun() {
+    printItem("Viena")
+    printItem(50)
+    printItem(true)
+}
+
 fun main() {
-    main_test2()
+    main_fun()
 }
