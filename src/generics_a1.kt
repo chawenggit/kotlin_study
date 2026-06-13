@@ -224,11 +224,16 @@ fun main_AnyVsGenerics() {
 fun <T> printItem(item: T) {
     println(item)
 }
-
+    // constrained type : receive only this type and its subtypes
+fun <T:Number> printItem_Number(item: T) {
+    println(item)
+}
 fun main_fun() {
     printItem("Viena")
     printItem(50)
     printItem(true)
+//    printItem_Number(true) //Error
+    printItem_Number(30.8)
 }
 
 fun main() {
