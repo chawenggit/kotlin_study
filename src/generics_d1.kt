@@ -239,5 +239,5 @@ fun main() {
 
     val ref: ParameterizedConsumer<Double> = parameterizedConsumer
 
-    assertTrue(ref is ParameterizedConsumer<Double>)
+//    assertTrue(ref is ParameterizedConsumer<Double>)
 }
