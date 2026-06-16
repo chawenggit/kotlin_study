@@ -7,6 +7,8 @@ package generics_e2
 open class Player(val name: String)
 class FootballPlayer(name: String) : Player(name)
 class BaseballPlayer(name: String) : Player(name)
+open class GamePlayer(name: String) : Player(name)
+class CounterStrikePlayer(name: String) : GamePlayer(name)
 
 class Team<T: Player>(val teamName: String, val players: MutableList<T>) {
     fun addPlayer(player: T) {
@@ -26,11 +28,14 @@ fun main1() {
     val baseballPlayer1 = BaseballPlayer("BASEBALL player 1")
     val baseballPlayer2 = BaseballPlayer("BASEBALL player 2")
 
-    val footballTeam = Team("LIVER POOL", mutableListOf(footballPlayer1))
-    footballTeam.addPlayer(footballPlayer2)
+    val teamFootball = Team("LIVER POOL", mutableListOf(footballPlayer1))
+//    footballTeam.addPlayer(footballPlayer2)
 
-    val baseballTeam = Team("BASEBALL TEAM", mutableListOf(baseballPlayer2))
-    baseballTeam.addPlayer(baseballPlayer1)
+    val teamBaseball = Team("BASEBALL TEAM", mutableListOf(baseballPlayer2))
+//    baseballTeam.addPlayer(baseballPlayer1)
+
+    val teamFootballP = Team<Player>("FOOTBALL TEAM_P", mutableListOf())
+    teamFootballP.addPlayer(footballPlayer1)
 
 }
 
