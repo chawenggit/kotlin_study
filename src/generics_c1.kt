@@ -108,4 +108,3 @@ fun main(args: Array<String>) {
     val integ: InClass<Int> = inClassObject
     println(integ.toString(23))
 }
-"The Comprehensive Guide to Kotlin Programming _ A Complete -- Madison Giroux -- 2025 -- Madison Giroux -- 6cb8e6e7e035958ffdebe16c805935a5 -- Anna’s Archive"
