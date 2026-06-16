@@ -1,7 +1,8 @@
 package generics_e1
 
 /*
-    video "The Complete Android & Kotlin Development Course" /1. Generics Type Parameters and Casting
+    video "The Complete Android & Kotlin Development Course"
+    /1. Generics Type Parameters and Casting
  */
 //---------- Intro ------------------------------------
 open class Player(val name: String)

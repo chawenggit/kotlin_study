@@ -1,9 +1,12 @@
 package generics_e2
 
 /*
-    video "The Complete Android & Kotlin Development Course" /2. Generics Upper Bounds
+    video "The Complete Android & Kotlin Development Course"
+    2. Generics Upper Bounds
+    3. Generics Covariance and Contravariance
+
  */
-//---------- Intro ------------------------------------
+//---------- Invarance ------------------------------------
 class Team<T : Player>(val teamName: String, private val players: MutableList<T>) {
     fun addPlayer(player: T) {
         if (!players.contains(player)) {
@@ -14,9 +17,10 @@ class Team<T : Player>(val teamName: String, private val players: MutableList<T>
         }
     }
 }
+
 fun mainInvariance() {
     val p1 = Player("P1")
-    val p2 : Player = FootballPlayer("PF1")
+    val p2: Player = FootballPlayer("PF1")
     val teamFootballP = Team<Player>(
         "FOOTBALL TEAM_P",
         mutableListOf<Player>(p1, p2) // this is not error since p2 is the Polymorphism property
@@ -24,6 +28,7 @@ fun mainInvariance() {
     )
 }
 
+//---------- Varance ------------------------------------
 class TeamOUT<T : Player>(val teamName: String, private val players: MutableList<out T>) {
     fun addPlayer(player: T) {
         if (!players.contains(player)) {
@@ -34,6 +39,7 @@ class TeamOUT<T : Player>(val teamName: String, private val players: MutableList
         }
     }
 }
+
 open class Player(val name: String)
 class FootballPlayer(name: String) : Player(name)
 class BaseballPlayer(name: String) : Player(name)
@@ -51,18 +57,41 @@ class TeamIN<T : Player>(val teamName: String, private val players: MutableList<
     }
 }
 
-fun mainCovariance() {
+fun mainConTravariance() {
     val gp1 = GamePlayer("GP1")
     val gp2 = GamePlayer("GP2")
     val csp1 = CounterStrikePlayer("GP2")
     val teamCntStrGame = TeamIN<CounterStrikePlayer>(
         "CNT STRIKE TEAM",
-        mutableListOf(gp1))  // not error because of in
+        mutableListOf(gp1)
+    )  // not error because of in
 //    teamCntStrGame.addPlayer(gp2) // error because expect csp?
     teamCntStrGame.addPlayer(csp1) // OK
 }
 
+//---------- Generics Type Erasure and Reified keyword ------------------------------------
+// to preserve type info in runtime
+inline fun <reified T> getSpecificType(list: List<Any>): List<T> {
+    val retList = mutableListOf<T>()
+    for (item in list) {
+        if (item is T) {
+            retList.add(item)
+        }
+    }
+    return retList
+}
+
+fun mainErasure() {
+    val mixedList = mutableListOf(1, 2, "a", "b", "c", "Hello", 2.0f, 0.0, true, GamePlayer("GP1"))
+    println(getSpecificType<Int>(mixedList))
+    println(getSpecificType<String>(mixedList))
+    println(getSpecificType<Float>(mixedList))
+    println(getSpecificType<Double>(mixedList))
+    println(getSpecificType<Boolean>(mixedList))
+    println(getSpecificType<GamePlayer>(mixedList))
+}
+
 fun main() {
-    mainCovariance()
+    mainErasure()
 
 }
