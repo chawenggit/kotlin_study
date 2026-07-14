@@ -31,8 +31,6 @@ fun printMessageWithPrefix(message: String, prefix: String) {
     println("[$prefix] $message")
 }
 
-
-
 fun sum(x: Int, y: Int): Int {
     return x + y
 }
@@ -45,6 +43,10 @@ fun circleArea_single_exp(r: Int): Double = PI * (r * r)
 
 fun intervalInSeconds(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) = ((hours * 60) + minutes) * 60 + seconds
 
+fun max(a: Int, b: Int): Int = if (a > b) a else b
+// type inference
+fun max0(a: Int, b: Int) = if (a > b) a else b
+
 fun main() {
 
 //    hello()
@@ -55,5 +57,7 @@ fun main() {
     println(circleArea(1))
     println(circleArea_single_exp(2))
     println(intervalInSeconds(1))
+    println(max0(110, 22))
+    println(max(110, 22))
 }
 
