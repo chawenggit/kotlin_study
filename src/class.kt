@@ -23,7 +23,22 @@ val thirdUser = User("Max", 3)
 // User(name=Alex, id=1)
 //Create instance
 val contact = Contact(1, "mary@gmail.com")
+
+class Rectangle(val height: Int, val width: Int) {
+    val isSquare: Boolean
+        get() = height == width
+}
+
+fun main2() {
+    val rectangle = Rectangle(41, 43)
+    println(message = rectangle.isSquare)
+// false
+}
+
 fun main() {
+    main2()
+}
+fun main1() {
     println(contact.email)
     println(contact.category)
     contact.email = "jane@gmail.com"
