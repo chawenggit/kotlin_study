@@ -35,9 +35,6 @@ fun main2() {
 // false
 }
 
-fun main() {
-    main2()
-}
 fun main1() {
     println(contact.email)
     println(contact.category)
@@ -78,3 +75,30 @@ fun main1() {
 }
 
 //https://kotlinlang.org/docs/kotlin-tour-classes.html#exercise-3
+
+
+class User1(val name: String) {
+    var address: String = "unspecified"
+        set(value: String) {
+            println(
+                """
+                Address was changed for $name:
+                "$field" -> "$value".//Reads the backing field value
+                """.trimIndent()
+            )
+            field = value //  Updates the backing field value with the provided string
+        }
+}
+
+fun main3() {
+    val user = User1("Alice")
+    user.address = "Christoph-Rapparini-Bogen 23"
+    println(user.address)
+// Address was changed for Alice:
+// "unspecified" -> "Christoph-Rapparini-Bogen 23".
+}
+
+
+fun main() {
+    main3()
+}
